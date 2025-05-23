@@ -231,5 +231,9 @@ const getAnimeBySerie = async (req, res) => {
     }
 };
 
+const createAnime = async (req, res) => {
 
-module.exports = { getAnimeList, getAimeDetail, getAnimeBySerie };
+};
+
+
+module.exports = { getAnimeList, getAimeDetail, getAnimeBySerie, createAnime };
