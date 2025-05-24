@@ -50,7 +50,8 @@ const getAnimeList = async (req, res) => {
             // Loại bỏ các trường không cần thiết (ví dụ: animeGenres)
             {
                 $project: {
-                    animeGenres: 0
+                    animeGenres: 0,
+                    genres: 0
                 }
             },
             // Sắp xếp các kết quả theo trường và thứ tự mong muốn
@@ -155,8 +156,7 @@ const getAimeDetail = async (req, res) => {
 };
 
 const getAnimeBySerie = async (req, res) => {
-    // Lấy giá trị series slug từ query (chú ý: tên tham số có thể là 'seireslug' hoặc 'serieslug')
-    const seriesSlug = req.query.seireslug;  // hoặc req.query.serieslug nếu tên đúng
+    const seriesSlug = req.query.seireslug;
     if (!seriesSlug) {
         return res.status(400).json({
             success: false,
@@ -188,7 +188,7 @@ const getAnimeBySerie = async (req, res) => {
                 $match: { 'seriesdata.slug': seriesSlug }
             },
             { $sort: { [sortBy]: sortOrder } },
-             {
+            {
                 $project: {
                     seriesdata: 0
                 }
